@@ -1,0 +1,147 @@
+/* Hoja de estilos de PixelQuest Games */
+
+/* Reset básico */
+* {
+    box-sizing: border-box; /* hace que el padding y el border no aumenten el tamaño total */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #222; /* color de fondo oscuro para toda la página */
+    color: #fff; /* color del texto blanco para que se vea sobre el fondo oscuro */
+    font-family: Arial, sans-serif; /* fuente del sistema */
+    font-size: 16px;
+    line-height: 1.5; /* espacio entre líneas para que no se vea apretado */
+}
+
+/* Tamaños de los títulos y párrafos */
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Header */
+header {
+    padding: 40px 20px;
+    margin-bottom: 20px;
+    background-color: #222; /* mismo color de fondo que el body */
+    color: #fff;
+}
+
+/* Navegación */
+nav {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f39c12; /* línea de color naranja para separar el nav */
+    background-color: #222;
+    color: #fff;
+}
+
+nav ul {
+    display: flex; /* pone los links del menú en fila en vez de uno debajo del otro */
+    justify-content: center; /* centra los links dentro del nav */
+    gap: 20px; /* espacio entre cada link */
+    list-style: none; /* quita los puntos de la lista */
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #f39c12; /* color naranja para distinguir los links del menú */
+    transition: 0.2s; /* hace que el cambio de color al pasar el mouse sea suave */
+}
+
+nav a:hover {
+    color: #fff; /* cambia a blanco cuando el mouse pasa por encima del link */
+}
+
+/* Secciones */
+section {
+    padding: 30px 20px;
+    margin: 20px 0;
+}
+
+/* Grid de productos */
+#productos ul {
+    display: grid; /* acomoda las tarjetas en una cuadrícula */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas del mismo ancho */
+    gap: 20px; /* espacio entre tarjetas, reemplaza el margin que tenían antes */
+    list-style: none; /* quita los puntos de la lista */
+    padding: 0;
+}
+
+/* Tarjetas de producto */
+.producto {
+    padding: 20px;
+    border: 1px solid #f39c12; /* borde naranja para delimitar cada tarjeta */
+    background-color: #333; /* color un poco más claro que el fondo para diferenciar la tarjeta */
+    color: #fff;
+    transition: 0.2s; /* hace que el cambio al pasar el mouse sea suave */
+}
+
+.producto:hover {
+    background-color: #444; /* fondo un poco más claro al pasar el mouse */
+    border-color: #fff; /* borde blanco al pasar el mouse */
+}
+
+/* la segunda tarjeta se ve un poco distinta, solo para practicar nth-child */
+.producto:nth-child(2) {
+    border: 2px solid #fff;
+}
+
+/* Footer */
+footer {
+    padding: 30px 20px;
+    border-top: 1px solid #f39c12; /* línea naranja arriba del footer */
+    background-color: #222;
+    color: #fff;
+    display: flex; /* organiza el contenido del footer con flexbox */
+    flex-direction: column; /* pone los elementos en columna, uno debajo del otro */
+    align-items: center; /* centra todo horizontalmente */
+}
+
+footer ul {
+    display: flex; /* pone los links de redes sociales en fila */
+    justify-content: center; /* centra los links de redes sociales */
+    gap: 20px; /* espacio entre cada red social */
+    list-style: none; /* quita los puntos de la lista */
+    padding: 0;
+}
+
+footer a {
+    color: #f39c12; /* mismo color naranja para los links del footer */
+}
+
+/* Estilos para tablets */
+@media (max-width: 768px) {
+    #productos ul {
+        grid-template-columns: repeat(2, 1fr); /* pasa de 3 a 2 columnas */
+    }
+}
+
+/* Estilos para celulares */
+@media (max-width: 480px) {
+    #productos ul {
+        grid-template-columns: 1fr; /* pasa a 1 sola columna */
+    }
+
+    nav ul {
+        flex-direction: column; /* apila los links del menú en vez de fila */
+    }
+
+    header h1 {
+        font-size: 24px; /* reduce el título para que no se vea tan grande */
+    }
+}
