@@ -111,35 +111,58 @@
         <!-- ===================== SECCIÓN PRODUCTOS (Cards + Grid de Bootstrap) ===================== -->
         <section id="productos" class="container py-4">
             <h2 class="text-center mb-4">Productos destacados</h2>
+
+            <!-- Panel que se actualiza con JavaScript al pasar el mouse (evento mouseover) sobre una tarjeta -->
+            <div id="vistaPrevia" class="vista-previa mb-4">
+                <p class="mb-0">Pasa el mouse sobre un producto para ver más detalles aquí.</p>
+            </div>
+
+            <!-- id="filaProductos": aquí JavaScript agrega nuevas tarjetas dinámicamente con la Fetch API -->
             <!-- row-cols-*: 1 columna en móvil, 2 en tablet (sm), 3 en escritorio (lg) -->
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+            <div id="filaProductos" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 <div class="col">
-                    <div class="card producto h-100">
+                    <div class="card producto h-100" data-nombre="Nova Strike" data-descripcion="Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores.">
                         <img src="img/producto1.png" class="card-img-top" alt="Portada del videojuego Nova Strike" width="300" height="200">
                         <div class="card-body">
-                            <h3 class="card-title h5">Nova Strike</h3>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h3 class="card-title h5">Nova Strike</h3>
+                                <!-- Botón de favorito: evento click manejado por JavaScript -->
+                                <button type="button" class="btn-favorito" aria-label="Marcar como favorito">&#9825;</button>
+                            </div>
                             <p class="card-text">Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card producto h-100">
+                    <div class="card producto h-100" data-nombre="Aetheria" data-descripcion="RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador.">
                         <img src="img/producto2.png" class="card-img-top" alt="Portada del videojuego Aetheria" width="300" height="200">
                         <div class="card-body">
-                            <h3 class="card-title h5">Aetheria</h3>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h3 class="card-title h5">Aetheria</h3>
+                                <button type="button" class="btn-favorito" aria-label="Marcar como favorito">&#9825;</button>
+                            </div>
                             <p class="card-text">RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card producto h-100">
+                    <div class="card producto h-100" data-nombre="Rally Rush" data-descripcion="Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos.">
                         <img src="img/producto3.png" class="card-img-top" alt="Portada del videojuego Rally Rush" width="300" height="200">
                         <div class="card-body">
-                            <h3 class="card-title h5">Rally Rush</h3>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h3 class="card-title h5">Rally Rush</h3>
+                                <button type="button" class="btn-favorito" aria-label="Marcar como favorito">&#9825;</button>
+                            </div>
                             <p class="card-text">Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Botón que dispara la Fetch API (evento click) para traer más juegos desde una API pública -->
+            <div class="text-center mt-4">
+                <button id="btnCargarMas" type="button" class="btn btn-outline-warning">Cargar más juegos desde la tienda</button>
+                <p id="mensajeCarga" class="mt-2 mb-0" aria-live="polite"></p>
             </div>
         </section>
     </main>
@@ -154,10 +177,23 @@
             <li class="list-inline-item"><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
             <li class="list-inline-item"><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
         </ul>
+
+        <!-- Formulario de newsletter: evento submit manejado por JavaScript -->
+        <form id="formNewsletter" class="newsletter-form mx-auto my-3" novalidate>
+            <label for="emailNewsletter" class="form-label">Recibe ofertas y lanzamientos por correo</label>
+            <div class="input-group">
+                <input type="email" class="form-control" id="emailNewsletter" placeholder="tu@correo.com" required>
+                <button class="btn btn-warning" type="submit">Suscribirme</button>
+            </div>
+        </form>
+        <div id="mensajeNewsletter" aria-live="polite"></div>
+
         <p class="mb-0">&copy; 2026 PixelQuest Games. Todos los derechos reservados.</p>
     </footer>
 
     <!-- Bootstrap 5.3 vía CDN: bundle con Popper (necesario para navbar y carrusel) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Nuestro JavaScript: manipulación del DOM, eventos y Fetch API (Semana 5) -->
+    <script src="script.js"></script>
 </body>
 </html>

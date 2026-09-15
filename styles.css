@@ -112,3 +112,57 @@ footer a {
         font-size: 24px;
     }
 }
+
+/* ===================== Semana 5: interactividad con JavaScript ===================== */
+
+/* Panel de vista previa que actualiza el evento mouseover */
+.vista-previa {
+    background-color: var(--pq-card);
+    border: 1px dashed var(--pq-naranja);
+    border-radius: 6px;
+    padding: 15px 20px;
+    min-height: 60px;
+}
+
+.vista-previa h4 {
+    color: var(--pq-naranja);
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Botón de favorito dentro de cada tarjeta */
+.btn-favorito {
+    background: none;
+    border: none;
+    color: var(--pq-naranja);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+}
+
+.btn-favorito.activo {
+    color: #e74c3c; /* corazón lleno en rojo cuando está marcado como favorito */
+}
+
+/* Tarjetas agregadas dinámicamente desde la Fake Store API */
+.card-img-api {
+    height: 200px;
+    object-fit: contain; /* las imágenes de la API son de otra proporción, contain evita que se deformen */
+    background-color: #fff;
+    padding: 10px;
+}
+
+/* Formulario de newsletter */
+.newsletter-form {
+    max-width: 420px;
+}
+
+.newsletter-form .form-label {
+    font-size: 0.9rem;
+}
+
+#mensajeNewsletter {
+    max-width: 420px;
+    margin: 0 auto;
+}
