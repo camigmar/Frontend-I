@@ -8,73 +8,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Hace la página responsiva en dispositivos móviles -->
     <title>PixelQuest Games - Tienda de Videojuegos</title>
+
+    <!-- Bootstrap 5.3 vía CDN: hoja de estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos propios: se cargan después de Bootstrap para poder sobrescribir sus colores por defecto -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Título que aparece en la pestaña del navegador -->
 </head>
 <body>
 
-    <header>
-        <!-- Cabecera del sitio: nombre de la tienda y descripción breve -->
-        <img src="img/logo.png" alt="Logotipo de PixelQuest Games" width="80" height="80">
-        <h1>PixelQuest Games</h1>
-        <p>Tu tienda de confianza para los mejores videojuegos de PC y consola, con los últimos lanzamientos y clásicos imperdibles.</p>
-    </header>
-
-    <nav>
-        <!-- Menú de navegación principal del sitio -->
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+    <!-- ===================== NAVBAR (Bootstrap) ===================== -->
+    <!-- navbar-expand-lg: se colapsa en pantallas menores a "lg" y muestra el botón hamburguesa -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+                <img src="img/logo.png" alt="Logotipo de PixelQuest Games" width="40" height="40">
+                PixelQuest Games
+            </a>
+            <!-- Botón que aparece en móvil para desplegar el menú -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <section id="inicio">
-        <h2>Bienvenido a PixelQuest Games</h2>
-        <p>Somos una tienda especializada en videojuegos, con más de 10 años de experiencia entregando la mejor selección de títulos de acción, aventura, deportes y estrategia. Explora nuestros productos destacados a continuación.</p>
+    <header class="text-center py-5">
+        <!-- Cabecera del sitio: nombre de la tienda y descripción breve -->
+        <h1>PixelQuest Games</h1>
+        <p class="lead mb-0">Tu tienda de confianza para los mejores videojuegos de PC y consola, con los últimos lanzamientos y clásicos imperdibles.</p>
+    </header>
 
-        <h3>Categorías disponibles</h3>
-        <ul>
-            <li>Acción y Aventura</li>
-            <li>Deportes</li>
-            <li>Estrategia</li>
-            <li>Multijugador Online</li>
-        </ul>
-    </section>
+    <!-- ===================== CARRUSEL (Bootstrap) ===================== -->
+    <!-- data-bs-ride="carousel" + data-bs-interval="3000": inicia solo y cambia cada 3 segundos -->
+    <div id="carruselDestacados" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carruselDestacados" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carruselDestacados" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carruselDestacados" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/producto1.png" class="d-block w-100 carousel-img" alt="Nova Strike, shooter de ciencia ficción">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Nova Strike</h5>
+                    <p>Shooter de ciencia ficción con modo multijugador para hasta 16 jugadores.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/producto2.png" class="d-block w-100 carousel-img" alt="Aetheria, RPG de mundo abierto">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Aetheria</h5>
+                    <p>RPG de mundo abierto con historia narrada por las decisiones del jugador.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="img/producto3.png" class="d-block w-100 carousel-img" alt="Rally Rush, juego de carreras arcade">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Rally Rush</h5>
+                    <p>Carreras arcade con circuitos de todo el mundo y personalización de vehículos.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carruselDestacados" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carruselDestacados" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
 
-    <section id="productos">
-        <h2>Productos destacados</h2>
-        <ul>
-            <li class="producto">
-                <img src="img/producto1.png" alt="Portada del videojuego Nova Strike" width="150" height="100">
-                <h3>Nova Strike</h3>
-                <p>Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores.</p>
-            </li>
-            <li class="producto">
-                <img src="img/producto2.png" alt="Portada del videojuego Aetheria" width="150" height="100">
-                <h3>Aetheria</h3>
-                <p>RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador.</p>
-            </li>
-            <li class="producto">
-                <img src="img/producto3.png" alt="Portada del videojuego Rally Rush" width="150" height="100">
-                <h3>Rally Rush</h3>
-                <p>Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos.</p>
-            </li>
-        </ul>
-    </section>
+    <main>
+        <!-- ===================== SECCIÓN INICIO (Grid de Bootstrap) ===================== -->
+        <section id="inicio" class="container py-4">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7">
+                    <h2>Bienvenido a PixelQuest Games</h2>
+                    <p>Somos una tienda especializada en videojuegos, con más de 10 años de experiencia entregando la mejor selección de títulos de acción, aventura, deportes y estrategia. Explora nuestros productos destacados a continuación.</p>
+                </div>
+                <div class="col-lg-5">
+                    <h3>Categorías disponibles</h3>
+                    <!-- Fila interna con columnas para que las categorías se acomoden en 2 por fila en pantallas medianas -->
+                    <div class="row row-cols-2 g-2">
+                        <div class="col"><span class="badge categoria w-100 py-2">Acción y Aventura</span></div>
+                        <div class="col"><span class="badge categoria w-100 py-2">Deportes</span></div>
+                        <div class="col"><span class="badge categoria w-100 py-2">Estrategia</span></div>
+                        <div class="col"><span class="badge categoria w-100 py-2">Multijugador Online</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer id="contacto">
+        <!-- ===================== SECCIÓN PRODUCTOS (Cards + Grid de Bootstrap) ===================== -->
+        <section id="productos" class="container py-4">
+            <h2 class="text-center mb-4">Productos destacados</h2>
+            <!-- row-cols-*: 1 columna en móvil, 2 en tablet (sm), 3 en escritorio (lg) -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card producto h-100">
+                        <img src="img/producto1.png" class="card-img-top" alt="Portada del videojuego Nova Strike" width="300" height="200">
+                        <div class="card-body">
+                            <h3 class="card-title h5">Nova Strike</h3>
+                            <p class="card-text">Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card producto h-100">
+                        <img src="img/producto2.png" class="card-img-top" alt="Portada del videojuego Aetheria" width="300" height="200">
+                        <div class="card-body">
+                            <h3 class="card-title h5">Aetheria</h3>
+                            <p class="card-text">RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card producto h-100">
+                        <img src="img/producto3.png" class="card-img-top" alt="Portada del videojuego Rally Rush" width="300" height="200">
+                        <div class="card-body">
+                            <h3 class="card-title h5">Rally Rush</h3>
+                            <p class="card-text">Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto" class="text-center py-4">
         <!-- Pie de página con información de contacto -->
         <h2>Contacto</h2>
         <p>Av. Siempre Viva 742, Santiago, Chile</p>
         <p>Correo: contacto@pixelquestgames.cl</p>
-        <ul>
-            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
-            <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+            <li class="list-inline-item"><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
+            <li class="list-inline-item"><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
         </ul>
-        <p>&copy; 2026 PixelQuest Games. Todos los derechos reservados.</p>
+        <p class="mb-0">&copy; 2026 PixelQuest Games. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Bootstrap 5.3 vía CDN: bundle con Popper (necesario para navbar y carrusel) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
