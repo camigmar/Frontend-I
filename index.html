@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Estilos propios: se cargan después de Bootstrap para poder sobrescribir sus colores por defecto -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-                <img src="img/logo.png" alt="Logotipo de PixelQuest Games" width="40" height="40">
+                <img src="assets/img/logo.png" alt="Logotipo de PixelQuest Games" width="40" height="40">
                 PixelQuest Games
             </a>
             <!-- Botón que aparece en móvil para desplegar el menú -->
@@ -34,6 +34,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+                    <!-- Enlace al carrito: el badge se actualiza con JavaScript cada vez que cambia el carrito -->
+                    <li class="nav-item"><a class="nav-link" href="#carrito">Carrito <span id="badgeCarrito" class="badge bg-warning text-dark">0</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                 </ul>
             </div>
@@ -56,21 +58,21 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="img/producto1.png" class="d-block w-100 carousel-img" alt="Nova Strike, shooter de ciencia ficción">
+                <img src="assets/img/producto1.png" class="d-block w-100 carousel-img" alt="Nova Strike, shooter de ciencia ficción">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Nova Strike</h5>
                     <p>Shooter de ciencia ficción con modo multijugador para hasta 16 jugadores.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="img/producto2.png" class="d-block w-100 carousel-img" alt="Aetheria, RPG de mundo abierto">
+                <img src="assets/img/producto2.png" class="d-block w-100 carousel-img" alt="Aetheria, RPG de mundo abierto">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Aetheria</h5>
                     <p>RPG de mundo abierto con historia narrada por las decisiones del jugador.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="img/producto3.png" class="d-block w-100 carousel-img" alt="Rally Rush, juego de carreras arcade">
+                <img src="assets/img/producto3.png" class="d-block w-100 carousel-img" alt="Rally Rush, juego de carreras arcade">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Rally Rush</h5>
                     <p>Carreras arcade con circuitos de todo el mundo y personalización de vehículos.</p>
@@ -112,17 +114,34 @@
         <section id="productos" class="container py-4">
             <h2 class="text-center mb-4">Productos destacados</h2>
 
+            <!-- Formulario de búsqueda: evento submit manejado por JavaScript (filtra las cards por nombre) -->
+            <form id="formBusqueda" class="row g-2 justify-content-center mb-4" novalidate>
+                <div class="col-sm-8 col-md-6">
+                    <label for="inputBusqueda" class="visually-hidden">Buscar productos por nombre</label>
+                    <input type="text" class="form-control" id="inputBusqueda" placeholder="Buscar juegos por nombre...">
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-warning" type="submit">Buscar</button>
+                </div>
+            </form>
+
+            <!-- Mensaje que aparece cuando la búsqueda no encuentra resultados; oculto por defecto -->
+            <p id="mensajeSinResultados" class="text-center d-none">No se encontraron productos que coincidan con tu búsqueda.</p>
+
             <!-- Panel que se actualiza con JavaScript al pasar el mouse (evento mouseover) sobre una tarjeta -->
             <div id="vistaPrevia" class="vista-previa mb-4">
                 <p class="mb-0">Pasa el mouse sobre un producto para ver más detalles aquí.</p>
             </div>
 
+            <!-- Mensaje de error si falla la carga de productos.json; oculto por defecto -->
+            <p id="mensajeErrorProductos" class="text-danger text-center d-none"></p>
+
             <!-- id="filaProductos": aquí JavaScript agrega nuevas tarjetas dinámicamente con la Fetch API -->
             <!-- row-cols-*: 1 columna en móvil, 2 en tablet (sm), 3 en escritorio (lg) -->
             <div id="filaProductos" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 <div class="col">
-                    <div class="card producto h-100" data-nombre="Nova Strike" data-descripcion="Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores.">
-                        <img src="img/producto1.png" class="card-img-top" alt="Portada del videojuego Nova Strike" width="300" height="200">
+                    <div class="card producto h-100" data-nombre="Nova Strike" data-descripcion="Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores." data-precio="$49.99 USD" data-imagen="assets/img/producto1.png">
+                        <img src="assets/img/producto1.png" class="card-img-top" alt="Portada del videojuego Nova Strike" width="300" height="200">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start">
                                 <h3 class="card-title h5">Nova Strike</h3>
@@ -130,30 +149,43 @@
                                 <button type="button" class="btn-favorito" aria-label="Marcar como favorito">&#9825;</button>
                             </div>
                             <p class="card-text">Shooter de ciencia ficción con modo campaña y multijugador online para hasta 16 jugadores.</p>
+                            <p class="card-text fw-bold text-warning">$49.99 USD</p>
+                            <!-- Botón que abre el modal de detalle: evento click manejado por JavaScript -->
+                            <button type="button" class="btn btn-outline-warning btn-sm w-100 btn-ver-detalle">Ver detalle</button>
+                            <!-- Botón que agrega el producto al carrito: evento click manejado por JavaScript -->
+                            <button type="button" class="btn btn-warning btn-sm w-100 mt-2 btn-agregar-carrito">Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card producto h-100" data-nombre="Aetheria" data-descripcion="RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador.">
-                        <img src="img/producto2.png" class="card-img-top" alt="Portada del videojuego Aetheria" width="300" height="200">
+                    <div class="card producto h-100" data-nombre="Aetheria" data-descripcion="RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador." data-precio="$59.99 USD" data-imagen="assets/img/producto2.png">
+                        <img src="assets/img/producto2.png" class="card-img-top" alt="Portada del videojuego Aetheria" width="300" height="200">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start">
                                 <h3 class="card-title h5">Aetheria</h3>
                                 <button type="button" class="btn-favorito" aria-label="Marcar como favorito">&#9825;</button>
                             </div>
                             <p class="card-text">RPG de mundo abierto con un extenso árbol de habilidades y una historia narrada por decisiones del jugador.</p>
+                            <p class="card-text fw-bold text-warning">$59.99 USD</p>
+                            <button type="button" class="btn btn-outline-warning btn-sm w-100 btn-ver-detalle">Ver detalle</button>
+                            <!-- Botón que agrega el producto al carrito: evento click manejado por JavaScript -->
+                            <button type="button" class="btn btn-warning btn-sm w-100 mt-2 btn-agregar-carrito">Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card producto h-100" data-nombre="Rally Rush" data-descripcion="Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos.">
-                        <img src="img/producto3.png" class="card-img-top" alt="Portada del videojuego Rally Rush" width="300" height="200">
+                    <div class="card producto h-100" data-nombre="Rally Rush" data-descripcion="Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos." data-precio="$39.99 USD" data-imagen="assets/img/producto3.png">
+                        <img src="assets/img/producto3.png" class="card-img-top" alt="Portada del videojuego Rally Rush" width="300" height="200">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start">
                                 <h3 class="card-title h5">Rally Rush</h3>
                                 <button type="button" class="btn-favorito" aria-label="Marcar como favorito">&#9825;</button>
                             </div>
                             <p class="card-text">Juego de carreras arcade con circuitos de todo el mundo y personalización completa de vehículos.</p>
+                            <p class="card-text fw-bold text-warning">$39.99 USD</p>
+                            <button type="button" class="btn btn-outline-warning btn-sm w-100 btn-ver-detalle">Ver detalle</button>
+                            <!-- Botón que agrega el producto al carrito: evento click manejado por JavaScript -->
+                            <button type="button" class="btn btn-warning btn-sm w-100 mt-2 btn-agregar-carrito">Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
@@ -163,6 +195,22 @@
             <div class="text-center mt-4">
                 <button id="btnCargarMas" type="button" class="btn btn-outline-warning">Cargar más juegos desde la tienda</button>
                 <p id="mensajeCarga" class="mt-2 mb-0" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- ===================== SECCIÓN CARRITO (Semana 6) ===================== -->
+        <section id="carrito" class="container py-4">
+            <h2 class="text-center mb-4">Tu carrito de compras</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Resumen: JavaScript actualiza la cantidad y el total cada vez que cambia el carrito -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span>Productos en el carrito: <strong id="carritoCantidad">0</strong></span>
+                        <span>Total: <strong id="carritoTotal">$0.00 USD</strong></span>
+                    </div>
+                    <!-- id="listaCarrito": aquí JavaScript agrega/quita elementos con createElement/appendChild -->
+                    <ul id="listaCarrito" class="list-group" aria-live="polite"></ul>
+                </div>
             </div>
         </section>
     </main>
@@ -191,9 +239,33 @@
         <p class="mb-0">&copy; 2026 PixelQuest Games. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- ===================== MODAL DETALLE DE PRODUCTO (Bootstrap, Semana 6) ===================== -->
+    <!-- Modal único y reutilizable: JavaScript inyecta los datos del producto clickeado antes de mostrarlo -->
+    <div class="modal fade" id="modalDetalleProducto" tabindex="-1" aria-labelledby="modalDetalleProductoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5" id="modalDetalleProductoLabel">Detalle del producto</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar ventana de detalle"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImagen" src="" alt="" class="img-fluid rounded mb-3">
+                    <h3 id="modalNombre" class="h5"></h3>
+                    <p id="modalDescripcion"></p>
+                    <p id="modalPrecio" class="fw-bold text-warning fs-5 mb-0"></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- Agrega al carrito el producto que se está mostrando en el modal -->
+                    <button type="button" id="modalBtnAgregarCarrito" class="btn btn-warning">Agregar al carrito</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap 5.3 vía CDN: bundle con Popper (necesario para navbar y carrusel) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Nuestro JavaScript: manipulación del DOM, eventos y Fetch API (Semana 5) -->
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

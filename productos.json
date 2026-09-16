@@ -1,0 +1,23 @@
+[
+  {
+    "id": 101,
+    "title": "Solaris Odyssey",
+    "price": 39.99,
+    "description": "Aventura espacial de exploración con mundos generados proceduralmente y un sistema de crafteo profundo.",
+    "image": "assets/img/producto1.png"
+  },
+  {
+    "id": 102,
+    "title": "Iron Vanguard",
+    "price": 54.99,
+    "description": "Shooter táctico cooperativo para 4 jugadores, con misiones dinámicas y personalización de armamento.",
+    "image": "assets/img/producto2.png"
+  },
+  {
+    "id": 103,
+    "title": "Mystic Realms",
+    "price": 29.99,
+    "description": "RPG de fantasía por turnos con más de 40 horas de historia y un sistema de alianzas entre facciones.",
+    "image": "assets/img/producto3.png"
+  }
+]
