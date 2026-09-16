@@ -166,3 +166,11 @@ footer a {
     max-width: 420px;
     margin: 0 auto;
 }
+
+/* ===================== Semana 6: modal de detalle de producto ===================== */
+
+/* El modal de Bootstrap tiene fondo blanco, pero el body hereda color: #fff (tema oscuro del sitio).
+   Sin esta regla, el nombre y la descripción del producto quedarían en blanco sobre fondo blanco. */
+.modal-content {
+    color: #212529;
+}
