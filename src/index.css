@@ -21,6 +21,15 @@ body {
   font-weight: bold;
 }
 
+/* link del carrito en naranja como en la versión anterior */
+.navbar .nav-link {
+  color: var(--pq-naranja);
+}
+
+.navbar .nav-link:hover {
+  color: #fff;
+}
+
 /* tarjetas de productos */
 .card.producto {
   background-color: var(--pq-card);
@@ -36,4 +45,16 @@ body {
 
 .precio {
   color: var(--pq-naranja);
+}
+
+/* para que la navbar no tape el título al bajar al carrito */
+#carrito {
+  scroll-margin-top: 80px;
+}
+
+/* filas del carrito con el mismo estilo oscuro de las cards */
+.carrito .list-group-item {
+  background-color: var(--pq-card);
+  border-color: var(--pq-naranja);
+  color: #fff;
 }

@@ -1,4 +1,4 @@
-function ProductCard({ producto }) {
+function ProductCard({ producto, agregarAlCarrito }) {
   return (
     // tarjeta de un solo producto
     <div className="card producto h-100">
@@ -12,6 +12,14 @@ function ProductCard({ producto }) {
         <p className="card-text">{producto.description}</p>
         {/* precio siempre con 2 decimales */}
         <p className="card-text precio fw-bold">${producto.price.toFixed(2)} USD</p>
+        {/* manda este producto al carrito */}
+        <button
+          type="button"
+          className="btn btn-warning w-100"
+          onClick={() => agregarAlCarrito(producto)}
+        >
+          Agregar al carrito
+        </button>
       </div>
     </div>
   )
