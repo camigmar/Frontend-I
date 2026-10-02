@@ -1,0 +1,39 @@
+/* colores de la tienda */
+:root {
+  --pq-naranja: #f39c12;
+  --pq-fondo: #222;
+  --pq-card: #333;
+}
+
+/* fondo oscuro y letra blanca en toda la página */
+body {
+  background-color: var(--pq-fondo);
+  color: #fff;
+}
+
+/* barra de arriba con línea naranja abajo */
+.navbar {
+  background-color: var(--pq-fondo);
+  border-bottom: 1px solid var(--pq-naranja);
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+/* tarjetas de productos */
+.card.producto {
+  background-color: var(--pq-card);
+  border: 1px solid var(--pq-naranja);
+  color: #fff;
+}
+
+/* todas las imágenes del mismo alto sin deformarse */
+.card.producto .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.precio {
+  color: var(--pq-naranja);
+}

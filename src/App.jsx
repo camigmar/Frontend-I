@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Navbar from './components/Navbar.jsx'
+import ProductList from './components/ProductList.jsx'
 
 function App() {
   // aquí guardo los productos
@@ -37,23 +39,18 @@ function App() {
   }, [])
 
   return (
-    <div className="container my-5 text-center">
-      <h1>PixelQuest Games</h1>
+    <>
+      <Navbar />
 
-      {/* lo que se ve según cómo va la carga */}
-      {cargando && <p>Cargando productos...</p>}
-      {error && <p className="text-danger">{error}</p>}
-      {!cargando && !error && (
-        <ul className="list-unstyled">
-          {/* una línea por cada producto */}
-          {productos.map((producto) => (
-            <li key={producto.id}>
-              {producto.title} - ${producto.price} USD
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      <main className="container my-5">
+        <h1 className="text-center mb-4">PixelQuest Games</h1>
+
+        {/* lo que se ve según cómo va la carga */}
+        {cargando && <p className="text-center">Cargando productos...</p>}
+        {error && <p className="text-center text-danger">{error}</p>}
+        {!cargando && !error && <ProductList productos={productos} />}
+      </main>
+    </>
   )
 }
 
