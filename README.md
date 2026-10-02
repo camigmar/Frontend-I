@@ -1,62 +1,81 @@
 # PixelQuest Games
 
-Tienda de videojuegos (e-commerce) desarrollada con HTML5, Bootstrap 5.3 y JavaScript vanilla, como proyecto del curso Desarrollo Frontend I.
+Tienda de videojuegos hecha con React, Vite y Bootstrap 5 para el curso Desarrollo Frontend I.
 
-## Descripción
+Sitio publicado: https://camigmar.github.io/Frontend-I/
 
-PixelQuest Games es un sitio de catálogo de videojuegos con carrito de compras, búsqueda de productos y carga dinámica de catálogo desde una API pública y desde un archivo JSON local, construido sin frameworks ni librerías de JavaScript adicionales.
+## Qué hace la tienda
 
-## Funcionalidades implementadas
+- Muestra un catálogo de videojuegos que se carga desde `productos.json`.
+- Cada juego tiene imagen, título, descripción y precio.
+- Se pueden agregar juegos al carrito, sumar unidades y eliminarlos.
+- El carrito muestra la cantidad, el subtotal de cada juego y el total.
+- La barra de arriba muestra cuántos productos hay en el carrito y tiene un enlace que baja hasta él.
 
-### Bootstrap 5.3
-- Navbar responsiva con menú colapsable
-- Carrusel de productos destacados
-- Grid de cards responsivas para el catálogo de productos
-- Modal de detalle de producto
+## Cómo usé React
 
-### JavaScript (DOM, eventos y Fetch API)
-- Manipulación del DOM y manejo de eventos (`mouseover`, `click`, `submit`)
-- Vista previa del producto al pasar el mouse sobre una card
-- Sistema de favoritos
-- Carrito de compras funcional: agregar productos, sumar cantidades de un mismo producto, calcular total y cantidad en tiempo real
-- Formulario de búsqueda (`submit`) que filtra el catálogo por nombre
-- Formulario de newsletter (`submit`) con validación de correo
-- Fetch API:
-  - Carga de productos desde una API pública (Fake Store API)
-  - Carga de productos desde un archivo JSON local (`productos.json`)
-  - Manejo de errores con `try/catch` y mensajes amigables en pantalla
+### useState
 
-## Estructura del proyecto
+- `productos`: la lista de juegos que llega del JSON.
+- `cargando`: está en `true` mientras se cargan los productos.
+- `error`: guarda un mensaje si la carga falla.
+- `carrito`: los juegos agregados, cada uno con su `cantidad`.
+- `expandida`: cada tarjeta tiene el suyo para mostrar la descripción completa o recortada.
+
+### useEffect
+
+En `App.jsx` hay un `useEffect` con `[]` que carga `productos.json` una sola vez al abrir la página. Usa `import.meta.env.BASE_URL` para que la ruta funcione también en GitHub Pages. Tiene una pausa de 800 ms para simular una API, revisa `response.ok` y usa `try/catch` por si algo falla.
+
+### Renderizado condicional
+
+- Mientras carga se ve "Cargando productos...".
+- Si hay un error se ve el mensaje en rojo.
+- Si el JSON viene vacío se ve "No hay productos disponibles.".
+- Si el carrito está vacío se ve un aviso en vez de la lista y el total.
+- Si un juego ya está en el carrito, su botón se pone verde y dice "✓ En el carrito (cantidad)".
+- El botón "Ver más / Ver menos" muestra la descripción completa o recortada a 60 caracteres.
+
+## Estructura de carpetas
 
 ```
 Frontend-I/
 ├── index.html
-├── productos.json
-├── README.md
-└── assets/
-    ├── css/
-    │   └── styles.css
-    ├── js/
-    │   └── script.js
-    └── img/
-        ├── logo.png
-        ├── producto1.png
-        ├── producto2.png
-        └── producto3.png
+├── package.json
+├── vite.config.js
+├── public/
+│   ├── productos.json
+│   └── img/
+├── src/
+│   ├── main.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── components/
+│       ├── Navbar.jsx
+│       ├── ProductList.jsx
+│       ├── ProductCard.jsx
+│       └── Cart.jsx
+└── legacy-semana6/
 ```
 
-## Cómo abrir el proyecto
+- `src/components/`: los componentes de la tienda.
+- `public/`: el JSON y las imágenes.
+- `legacy-semana6/`: la versión anterior hecha con HTML, Bootstrap y JavaScript (semana 6).
 
-Este proyecto usa `fetch()` para cargar `productos.json`, por lo que **no funciona abriendo `index.html` directamente con doble clic** (protocolo `file://`) debido a restricciones de seguridad del navegador. Es necesario servirlo desde un servidor local:
+## Cómo ejecutarlo
 
-1. Abrir la carpeta del proyecto en Visual Studio Code.
-2. Instalar la extensión **Live Server**.
-3. Click derecho sobre `index.html` → **Open with Live Server**.
-
-Alternativa sin VS Code (con Python instalado):
+Se necesita tener Node.js instalado.
 
 ```
-python -m http.server 8000
+npm install
+npm run dev
 ```
 
-y abrir `http://localhost:8000` en el navegador.
+Después abrir http://localhost:5173/Frontend-I/ en el navegador.
+
+## Cómo publicarlo
+
+```
+npm run deploy
+```
+
+Este comando hace el build y sube la carpeta `dist` a la rama `gh-pages`. La página queda en https://camigmar.github.io/Frontend-I/
