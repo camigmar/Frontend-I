@@ -75,7 +75,11 @@ function App() {
         {cargando && <p className="text-center">Cargando productos...</p>}
         {error && <p className="text-center text-danger">{error}</p>}
         {!cargando && !error && (
-          <ProductList productos={productos} agregarAlCarrito={agregarAlCarrito} />
+          <ProductList
+            productos={productos}
+            carrito={carrito}
+            agregarAlCarrito={agregarAlCarrito}
+          />
         )}
 
         {/* el link "Carrito" de la navbar baja hasta aquí */}

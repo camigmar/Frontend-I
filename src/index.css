@@ -52,6 +52,27 @@ body {
   scroll-margin-top: 80px;
 }
 
+/* aviso cuando el carrito no tiene nada */
+.carrito-vacio {
+  background-color: var(--pq-card);
+  border: 2px dashed var(--pq-naranja);
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* botón "ver más" que parece un link */
+.btn-ver-mas {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--pq-naranja);
+}
+
+.btn-ver-mas:hover {
+  text-decoration: underline;
+}
+
 /* filas del carrito con el mismo estilo oscuro de las cards */
 .carrito .list-group-item {
   background-color: var(--pq-card);
