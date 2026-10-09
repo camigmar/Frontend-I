@@ -47,9 +47,19 @@ body {
   color: var(--pq-naranja);
 }
 
-/* para que la navbar no tape el título al bajar al carrito */
-#carrito {
-  scroll-margin-top: 80px;
+/* para que la navbar no tape el título al saltar a cualquier sección */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* pie de página con línea naranja arriba */
+.pie {
+  background-color: var(--pq-fondo);
+  border-top: 1px solid var(--pq-naranja);
+}
+
+.pie a {
+  color: var(--pq-naranja);
 }
 
 /* aviso cuando el carrito no tiene nada */

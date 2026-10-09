@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Cart from './components/Cart.jsx'
 import CategoryFilter from './components/CategoryFilter.jsx'
+import Footer from './components/Footer.jsx'
 import Navbar from './components/Navbar.jsx'
 import ProductList from './components/ProductList.jsx'
 
@@ -78,34 +79,46 @@ function App() {
 
   return (
     <>
-      <Navbar cantidadEnCarrito={cantidadEnCarrito} />
+      {/* el header queda pegado arriba al bajar */}
+      <header className="sticky-top">
+        <Navbar cantidadEnCarrito={cantidadEnCarrito} />
+      </header>
 
       <main className="container my-5">
-        <h1 className="text-center mb-4">PixelQuest Games</h1>
+        <section id="inicio" className="text-center mb-5">
+          <h1 className="mb-3">PixelQuest Games</h1>
+          <p className="lead mb-0">Bienvenido a tu tienda de videojuegos favorita.</p>
+        </section>
 
-        {/* lo que se ve según cómo va la carga */}
-        {cargando && <p className="text-center">Cargando productos...</p>}
-        {error && <p className="text-center text-danger">{error}</p>}
-        {!cargando && !error && (
-          <>
-            <CategoryFilter
-              categorias={categorias}
-              categoriaActiva={categoriaActiva}
-              cambiarCategoria={setCategoriaActiva}
-            />
-            <ProductList
-              productos={productosFiltrados}
-              carrito={carrito}
-              agregarAlCarrito={agregarAlCarrito}
-            />
-          </>
-        )}
+        <section id="catalogo">
+          <h2 className="text-center mb-4">Catálogo</h2>
+
+          {/* lo que se ve según cómo va la carga */}
+          {cargando && <p className="text-center">Cargando productos...</p>}
+          {error && <p className="text-center text-danger">{error}</p>}
+          {!cargando && !error && (
+            <>
+              <CategoryFilter
+                categorias={categorias}
+                categoriaActiva={categoriaActiva}
+                cambiarCategoria={setCategoriaActiva}
+              />
+              <ProductList
+                productos={productosFiltrados}
+                carrito={carrito}
+                agregarAlCarrito={agregarAlCarrito}
+              />
+            </>
+          )}
+        </section>
 
         {/* el link "Carrito" de la navbar baja hasta aquí */}
         <section id="carrito" className="mt-5">
           <Cart carrito={carrito} eliminarDelCarrito={eliminarDelCarrito} />
         </section>
       </main>
+
+      <Footer />
     </>
   )
 }
