@@ -1,8 +1,19 @@
 import { useState } from 'react'
 
-function ProductCard({ producto, enCarrito, cantidad, agregarAlCarrito }) {
+function ProductCard({ producto, enCarrito, cantidad, agregarAlCarrito, eliminarProducto }) {
   // true cuando se ve la descripción completa
   const [expandida, setExpandida] = useState(false)
+  // true después del primer clic en eliminar
+  const [confirmando, setConfirmando] = useState(false)
+
+  // primer clic pregunta, segundo clic elimina
+  function clicEliminar() {
+    if (confirmando) {
+      eliminarProducto(producto.id)
+    } else {
+      setConfirmando(true)
+    }
+  }
 
   // solo recorto si la descripción es más larga que 60 letras
   const esLarga = producto.description.length > 60
@@ -39,6 +50,26 @@ function ProductCard({ producto, enCarrito, cantidad, agregarAlCarrito }) {
         >
           {enCarrito ? `✓ En el carrito (${cantidad})` : 'Agregar al carrito'}
         </button>
+
+        {/* eliminar en dos pasos para no borrar sin querer */}
+        <div className="d-flex gap-2 mt-2">
+          <button
+            type="button"
+            className={`btn btn-sm flex-fill ${confirmando ? 'btn-danger' : 'btn-outline-danger'}`}
+            onClick={clicEliminar}
+          >
+            {confirmando ? '¿Seguro? Confirmar' : 'Eliminar del catálogo'}
+          </button>
+          {confirmando && (
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-light"
+              onClick={() => setConfirmando(false)}
+            >
+              Cancelar
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

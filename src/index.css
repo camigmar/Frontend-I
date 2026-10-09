@@ -83,8 +83,9 @@ html {
   text-decoration: underline;
 }
 
-/* formulario centrado y no tan ancho */
-.formulario-contacto {
+/* formularios centrados y no tan anchos */
+.formulario-contacto,
+.formulario-agregar {
   max-width: 720px;
   margin: 0 auto;
 }

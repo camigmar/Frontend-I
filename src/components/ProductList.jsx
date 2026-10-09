@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard.jsx'
 
-function ProductList({ productos, carrito, agregarAlCarrito }) {
+function ProductList({ productos, carrito, agregarAlCarrito, eliminarProducto }) {
   // si el json vino vacío aviso en vez de dejar la página en blanco
   if (productos.length === 0) {
     return <p className="text-center">No hay productos disponibles.</p>
@@ -22,6 +22,7 @@ function ProductList({ productos, carrito, agregarAlCarrito }) {
               enCarrito={enCarrito}
               cantidad={cantidad}
               agregarAlCarrito={agregarAlCarrito}
+              eliminarProducto={eliminarProducto}
             />
           </div>
         )

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import AddGameForm from './components/AddGameForm.jsx'
 import Cart from './components/Cart.jsx'
 import CategoryFilter from './components/CategoryFilter.jsx'
 import ContactForm from './components/ContactForm.jsx'
@@ -45,6 +46,27 @@ function App() {
   // saca el producto del carrito
   function eliminarDelCarrito(id) {
     setCarrito((carritoActual) => carritoActual.filter((item) => item.id !== id))
+  }
+
+  // agrega un juego nuevo al final con el id más alto + 1
+  function agregarProducto(nuevo) {
+    setProductos((actuales) => {
+      const mayorId = actuales.reduce((mayor, producto) => Math.max(mayor, producto.id), 0)
+      return [...actuales, { ...nuevo, id: mayorId + 1 }]
+    })
+  }
+
+  // saca el juego del catálogo y también del carrito
+  function eliminarProducto(id) {
+    const quedan = productos.filter((producto) => producto.id !== id)
+    setProductos(quedan)
+    setCarrito((carritoActual) => carritoActual.filter((item) => item.id !== id))
+
+    // si ya no quedan juegos de la categoría elegida vuelvo a "Todas"
+    const sigueLaCategoria = quedan.some((producto) => producto.category === categoriaActiva)
+    if (categoriaActiva !== 'Todas' && !sigueLaCategoria) {
+      setCategoriaActiva('Todas')
+    }
   }
 
   // suma de todas las cantidades para el número de la navbar
@@ -108,10 +130,23 @@ function App() {
                 productos={productosFiltrados}
                 carrito={carrito}
                 agregarAlCarrito={agregarAlCarrito}
+                eliminarProducto={eliminarProducto}
               />
             </>
           )}
         </section>
+
+        {/* el formulario aparece cuando ya cargó el catálogo */}
+        {!cargando && !error && (
+          <section id="agregar" className="mt-5">
+            <h2 className="text-center mb-3">Agregar videojuego</h2>
+            <AddGameForm
+              categorias={categorias}
+              titulosExistentes={productos.map((producto) => producto.title)}
+              agregarProducto={agregarProducto}
+            />
+          </section>
+        )}
 
         {/* el link "Carrito" de la navbar baja hasta aquí */}
         <section id="carrito" className="mt-5">
