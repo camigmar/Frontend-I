@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Cart from './components/Cart.jsx'
 import CategoryFilter from './components/CategoryFilter.jsx'
+import ContactForm from './components/ContactForm.jsx'
 import Footer from './components/Footer.jsx'
 import Navbar from './components/Navbar.jsx'
 import ProductList from './components/ProductList.jsx'
@@ -115,6 +116,12 @@ function App() {
         {/* el link "Carrito" de la navbar baja hasta aquí */}
         <section id="carrito" className="mt-5">
           <Cart carrito={carrito} eliminarDelCarrito={eliminarDelCarrito} />
+        </section>
+
+        {/* el link "Contacto" de la navbar baja hasta aquí */}
+        <section id="contacto" className="mt-5">
+          <h2 className="text-center mb-3">Contacto</h2>
+          <ContactForm correoTienda="contacto@pixelquestgames.cl" />
         </section>
       </main>
 

@@ -83,6 +83,17 @@ html {
   text-decoration: underline;
 }
 
+/* formulario centrado y no tan ancho */
+.formulario-contacto {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* el contador gris de bootstrap casi no se ve en fondo oscuro */
+.formulario-contacto .contador {
+  color: #ccc;
+}
+
 /* filas del carrito con el mismo estilo oscuro de las cards */
 .carrito .list-group-item {
   background-color: var(--pq-card);
