@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Cart from './components/Cart.jsx'
+import CategoryFilter from './components/CategoryFilter.jsx'
 import Navbar from './components/Navbar.jsx'
 import ProductList from './components/ProductList.jsx'
 
@@ -12,6 +13,17 @@ function App() {
   const [error, setError] = useState(null)
   // productos que la persona agregó, cada uno con su cantidad
   const [carrito, setCarrito] = useState([])
+  // categoría elegida en el filtro
+  const [categoriaActiva, setCategoriaActiva] = useState('Todas')
+
+  // saco las categorías del json sin repetir
+  const categorias = [...new Set(productos.map((producto) => producto.category))]
+
+  // si es "Todas" muestro todo, si no solo los de esa categoría
+  const productosFiltrados =
+    categoriaActiva === 'Todas'
+      ? productos
+      : productos.filter((producto) => producto.category === categoriaActiva)
 
   // si ya está le sumo 1, si no lo agrego con cantidad 1
   function agregarAlCarrito(producto) {
@@ -75,11 +87,18 @@ function App() {
         {cargando && <p className="text-center">Cargando productos...</p>}
         {error && <p className="text-center text-danger">{error}</p>}
         {!cargando && !error && (
-          <ProductList
-            productos={productos}
-            carrito={carrito}
-            agregarAlCarrito={agregarAlCarrito}
-          />
+          <>
+            <CategoryFilter
+              categorias={categorias}
+              categoriaActiva={categoriaActiva}
+              cambiarCategoria={setCategoriaActiva}
+            />
+            <ProductList
+              productos={productosFiltrados}
+              carrito={carrito}
+              agregarAlCarrito={agregarAlCarrito}
+            />
+          </>
         )}
 
         {/* el link "Carrito" de la navbar baja hasta aquí */}
