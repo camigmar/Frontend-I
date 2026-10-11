@@ -2,7 +2,7 @@ function Footer() {
   return (
     <footer className="pie py-4">
       {/* en celular va en columna y en pantalla grande en fila */}
-      <div className="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div className="container pie-pagina">
         <p className="mb-0 fw-bold">PixelQuest Games</p>
         <a href="mailto:contacto@pixelquestgames.cl">contacto@pixelquestgames.cl</a>
         <p className="mb-0">© 2026 PixelQuest Games</p>

@@ -14,14 +14,11 @@ function Cart({ carrito, eliminarDelCarrito }) {
           <ul className="list-group mb-3">
             {/* una fila por producto */}
             {carrito.map((item) => (
-              <li
-                key={item.id}
-                className="list-group-item d-flex justify-content-between align-items-center gap-3"
-              >
-                <span>
+              <li key={item.id} className="list-group-item fila-carrito">
+                <span className="fila-carrito-nombre">
                   {item.title} x{item.cantidad}
                 </span>
-                <span className="ms-auto precio fw-bold">
+                <span className="fila-carrito-precio precio fw-bold">
                   ${(item.price * item.cantidad).toFixed(2)} USD
                 </span>
                 <button

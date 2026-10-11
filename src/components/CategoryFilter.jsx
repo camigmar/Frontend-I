@@ -5,7 +5,7 @@ function CategoryFilter({ categorias, categoriaActiva, cambiarCategoria }) {
   return (
     <nav aria-label="Filtrar por categoría" className="mb-4">
       {/* los botones bajan a otra fila si no caben */}
-      <div className="d-flex flex-wrap justify-content-center gap-2">
+      <div className="filtro-categorias">
         {opciones.map((categoria) => {
           const activa = categoria === categoriaActiva
 

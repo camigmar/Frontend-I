@@ -7,8 +7,8 @@ function ProductList({ productos, carrito, agregarAlCarrito, eliminarProducto })
   }
 
   return (
-    // 1 columna en celular, 2 en tablet y 3 en pantalla grande
-    <div className="row g-4">
+    // grilla propia: caben las columnas que alcancen de 260px o más
+    <div className="grilla-productos">
       {productos.map((producto) => {
         // reviso si este juego ya está en el carrito
         const enCarrito = carrito.some((item) => item.id === producto.id)
@@ -16,15 +16,14 @@ function ProductList({ productos, carrito, agregarAlCarrito, eliminarProducto })
         const cantidad = enCarrito ? carrito.find((item) => item.id === producto.id).cantidad : 0
 
         return (
-          <div className="col-12 col-md-6 col-lg-4" key={producto.id}>
-            <ProductCard
-              producto={producto}
-              enCarrito={enCarrito}
-              cantidad={cantidad}
-              agregarAlCarrito={agregarAlCarrito}
-              eliminarProducto={eliminarProducto}
-            />
-          </div>
+          <ProductCard
+            key={producto.id}
+            producto={producto}
+            enCarrito={enCarrito}
+            cantidad={cantidad}
+            agregarAlCarrito={agregarAlCarrito}
+            eliminarProducto={eliminarProducto}
+          />
         )
       })}
     </div>

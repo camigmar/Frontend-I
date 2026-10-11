@@ -30,16 +30,39 @@ body {
   color: #fff;
 }
 
+/* grilla del catálogo hecha con css grid */
+.grilla-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* botones del filtro con flexbox, bajan de fila si no caben */
+.filtro-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 /* tarjetas de productos */
 .card.producto {
   background-color: var(--pq-card);
   border: 1px solid var(--pq-naranja);
   color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* todas las imágenes del mismo alto sin deformarse */
+/* la tarjeta sube un poquito al pasar el mouse */
+.card.producto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* imagen con la misma forma que la portada para que no se corte */
 .card.producto .card-img-top {
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
@@ -60,6 +83,26 @@ html {
 
 .pie a {
   color: var(--pq-naranja);
+}
+
+/* en celular todo en columna */
+.pie-pagina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pie-pagina p {
+  margin-bottom: 0;
+}
+
+/* desde tablet todo en una fila */
+@media (min-width: 768px) {
+  .pie-pagina {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 /* aviso cuando el carrito no tiene nada */
@@ -100,4 +143,45 @@ html {
   background-color: var(--pq-card);
   border-color: var(--pq-naranja);
   color: #fff;
+}
+
+/* nombre a la izquierda, precio y botón a la derecha */
+.fila-carrito {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+/* el nombre ocupa lo que sobra y en celular baja el resto a otra línea */
+.fila-carrito-nombre {
+  flex: 1 1 12rem;
+}
+
+.fila-carrito-precio {
+  margin-left: auto;
+}
+
+/* contorno claro para saber dónde está el foco al usar el teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* si la persona pidió menos movimiento, saco animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  .card.producto:hover {
+    transform: none;
+  }
 }

@@ -5,7 +5,7 @@
     "price": 39.99,
     "category": "Aventura",
     "description": "Aventura espacial de exploración con mundos generados proceduralmente y un sistema de crafteo profundo.",
-    "image": "img/producto1.png"
+    "image": "img/juego101.svg"
   },
   {
     "id": 104,
@@ -29,7 +29,7 @@
     "price": 54.99,
     "category": "Acción",
     "description": "Shooter táctico cooperativo para 4 jugadores, con misiones dinámicas y personalización de armamento.",
-    "image": "img/producto2.png"
+    "image": "img/juego102.svg"
   },
   {
     "id": 106,
@@ -53,7 +53,7 @@
     "price": 29.99,
     "category": "RPG",
     "description": "RPG de fantasía por turnos con más de 40 horas de historia y un sistema de alianzas entre facciones.",
-    "image": "img/producto3.png"
+    "image": "img/juego103.svg"
   },
   {
     "id": 108,
