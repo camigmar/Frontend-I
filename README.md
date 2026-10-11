@@ -10,7 +10,7 @@ Tienda de videojuegos en línea hecha con React, Vite y Bootstrap 5. Muestra un 
 
 - Repositorio: https://github.com/camigmar/Frontend-I
 - Sitio publicado: https://camigmar.github.io/Frontend-I/
-- Video de presentación: (pendiente de subir)
+- Video de presentación: entregado como archivo .mp4 junto con esta entrega en la plataforma de la asignatura.
 
 ## Tecnologías
 
