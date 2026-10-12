@@ -1,0 +1,98 @@
+[
+  {
+    "id": 101,
+    "title": "Solaris Odyssey",
+    "price": 39.99,
+    "category": "Aventura",
+    "description": "Aventura espacial de exploración con mundos generados proceduralmente y un sistema de crafteo profundo.",
+    "image": "img/juego101.svg"
+  },
+  {
+    "id": 104,
+    "title": "Lost Horizon",
+    "price": 34.99,
+    "category": "Aventura",
+    "description": "Explora islas misteriosas a bordo de un velero y descubre los secretos de una civilización perdida.",
+    "image": "img/juego104.svg"
+  },
+  {
+    "id": 105,
+    "title": "Jungle Echoes",
+    "price": 24.99,
+    "category": "Aventura",
+    "description": "Aventura narrativa en la selva donde cada decisión cambia el destino de la expedición.",
+    "image": "img/juego105.svg"
+  },
+  {
+    "id": 102,
+    "title": "Iron Vanguard",
+    "price": 54.99,
+    "category": "Acción",
+    "description": "Shooter táctico cooperativo para 4 jugadores, con misiones dinámicas y personalización de armamento.",
+    "image": "img/juego102.svg"
+  },
+  {
+    "id": 106,
+    "title": "Neon Strike",
+    "price": 49.99,
+    "category": "Acción",
+    "description": "Acción frenética en una ciudad cyberpunk, con combates rápidos y mejoras de habilidades.",
+    "image": "img/juego106.svg"
+  },
+  {
+    "id": 107,
+    "title": "Shadow Run",
+    "price": 19.99,
+    "category": "Acción",
+    "description": "Plataformas de sigilo y velocidad: escapa de la seguridad corporativa entre las sombras.",
+    "image": "img/juego107.svg"
+  },
+  {
+    "id": 103,
+    "title": "Mystic Realms",
+    "price": 29.99,
+    "category": "RPG",
+    "description": "RPG de fantasía por turnos con más de 40 horas de historia y un sistema de alianzas entre facciones.",
+    "image": "img/juego103.svg"
+  },
+  {
+    "id": 108,
+    "title": "Dragon's Oath",
+    "price": 44.99,
+    "category": "RPG",
+    "description": "RPG de mundo abierto donde forjas pactos con dragones para defender el reino.",
+    "image": "img/juego108.svg"
+  },
+  {
+    "id": 109,
+    "title": "Ember Chronicles",
+    "price": 32.99,
+    "category": "RPG",
+    "description": "Rol táctico con árbol de habilidades ramificado y finales múltiples según tus alianzas.",
+    "image": "img/juego109.svg"
+  },
+  {
+    "id": 110,
+    "title": "Empire Forge",
+    "price": 39.99,
+    "category": "Estrategia",
+    "description": "Construye tu imperio desde una aldea, gestiona recursos y conquista territorios rivales.",
+    "image": "img/juego110.svg"
+  },
+  {
+    "id": 111,
+    "title": "Tactic Legends",
+    "price": 27.99,
+    "category": "Estrategia",
+    "description": "Estrategia por turnos con héroes únicos y campañas que premian la planificación.",
+    "image": "img/juego111.svg"
+  },
+  {
+    "id": 112,
+    "title": "Sky Fortress",
+    "price": 36.99,
+    "category": "Estrategia",
+    "description": "Defiende fortalezas flotantes con torres, drones y estrategias de defensa en tiempo real.",
+    "image": "img/juego112.svg"
+  }
+]
